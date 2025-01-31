@@ -1,0 +1,9 @@
+.fandq-container{
+  min-height: calc(100vh - 60px);
+  margin: 0 auto;
+}
+
+.title-fandq{
+  font-size: 18px;
+  padding: 10px ;
+}

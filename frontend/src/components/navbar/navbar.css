@@ -1,0 +1,29 @@
+nav {
+  background-color: rgb(132, 10, 10);
+}
+
+.logo {
+  font-weight: 600;
+}
+
+span {
+  font-weight: 700;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar .nav-link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: rgb(226, 163, 35);
+}
+
+.navbar .nav-link.active {
+  color: rgb(226, 163, 35) !important;
+}

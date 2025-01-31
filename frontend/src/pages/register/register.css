@@ -1,0 +1,116 @@
+.outer-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.register-title{
+  width: 100%;
+  background-color: rgb(132, 10, 10);
+  text-align: center;
+  color: white;
+  padding: 8px;
+  font-size: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.register-title p{
+  margin-bottom: 0;
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  min-height: 700px;
+  min-width: 500px;
+  gap: 5px;
+  animation: fadeIn 0.1s ease-in-out;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.register-form.show {
+  opacity: 1;
+}
+
+.register-form.hidden {
+  opacity: 0;
+}
+
+.register-form label {
+  width: 120px;
+  text-align: left;
+}
+
+.register-form select,
+.register-form input {
+  flex: 1
+}
+
+.register-form select{
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.register-form input{
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.register-form div{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.registration-detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.register-butn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.register-form button{
+  background-color: rgb(226, 163, 35);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
