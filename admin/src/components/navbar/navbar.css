@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.nav-bar {
+  background-color: rgb(132, 10, 10);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 0px;
+}
+
+.logo {
+  font-weight: 600;
+}
+
+span {
+  font-weight: 700;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: white;
+  padding-right: 10px;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: rgb(226, 163, 35);
+}
+
+.nav-link.active {
+  color: rgb(226, 163, 35) !important;
+}

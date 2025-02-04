@@ -2,10 +2,20 @@ import React from 'react'
 import { useState } from 'react'
 import { registerUser } from "../../utils/api.js";
 import './register.css'
+import useLocationData from '../../hooks/useLocationData';
 
 const Register = () => {
   const [userType,setUserType]=useState('donor');
   const [isFormVisible, setIsFormVisible] = useState(true);
+
+  const {
+    countryNames,
+    countryCodes,
+    states,
+    city,
+    handleCountryChange,
+    handleStateChange,
+  } = useLocationData();
 
   const bloodGroup=["A+","A-","A1+","A1-","A1B+","A1B-","A2+","A2-","A2B+","A2B-","AB+","AB-","B+","B-","Bombay Blood Group","INRA","O+","O-"];
 
@@ -46,6 +56,12 @@ const Register = () => {
       }
     });
     }
+    else if (name === "availability") { 
+      setFormData({
+        ...formData,
+        availability: value,
+      });
+    }
     else{
       setFormData({
         ...formData,
@@ -80,6 +96,7 @@ const Register = () => {
           password: formData.password,
           phone: formData.phone,
           address: formData.address,
+          availability: formData.availability,
         };
       }
       else if (userType === "admin") {
@@ -89,7 +106,6 @@ const Register = () => {
           password: formData.password,
         };
       }
-
       const response = await registerUser(filteredFormData);
       console.log("Registration Successful:", response);
       alert("User registered successfully!");
@@ -108,6 +124,36 @@ const Register = () => {
       alert("Registration failed. Please try again.");
     }
   };
+
+  const handleCountryChangeAndUpdate = (e) => {
+    const countryCode = e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      address: {
+        ...prev.address,
+        country: countryCode,
+      },
+    }));
+
+    handleCountryChange(e);
+    handleInputChange(e);
+  };
+
+  const handleStateChangeAndUpdate = (e) => {
+    const stateCode = e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      address: {
+        ...prev.address,
+        state: stateCode,
+      },
+    }));
+    handleStateChange(e);
+    handleInputChange(e);
+  };
+
   return (
       <div className="container outer-page">
         <div className={`register-page ${isFormVisible ? 'show' : ''}`}>
@@ -205,6 +251,37 @@ const Register = () => {
                     placeholder='phone number'
                   />
                 </div>
+
+                <div className="detail">
+                  <label htmlFor="country">Country</label>
+                  <select
+                    id="country"
+                    name="address.country"
+                    value={formData.address.country}
+                    onChange={handleCountryChangeAndUpdate}
+                    required
+                  >
+                    <option value="">Select</option>
+                    {countryNames.map((country, i) => (
+                      <option key={i} value={countryCodes[i]}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="state">State</label>
+                  <select id="state" name="address.state" value={formData.address.state} onChange={handleStateChangeAndUpdate} required>
+                    <option value="">Select</option>
+                    {states.map((state, i) => (
+                      <option value={state.isoCode} key={i}>
+                        {state.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div>
                   <label>City</label>
                   <input
@@ -216,28 +293,7 @@ const Register = () => {
                     placeholder='city'
                   />
                 </div>
-                <div>
-                  <label>State</label>
-                  <input
-                    type="text"
-                    name="address.state"
-                    value={formData.address.state}
-                    onChange={handleInputChange}
-                    required
-                    placeholder='state'
-                  />
-                </div>
-                <div>
-                  <label>Country</label>
-                  <input
-                    type="text"
-                    name="address.country"
-                    value={formData.address.country}
-                    onChange={handleInputChange}
-                    required
-                    placeholder='country'
-                  />
-                </div>
+
                 <div>
                   <label htmlFor="avilablity">Availability</label>
                   <select name="available" id="availability" 
@@ -333,7 +389,37 @@ const Register = () => {
                     placeholder='phone number'
                   />
                 </div>
-                <div className='registration-detail'>
+                <div className="detail">
+                  <label htmlFor="country">Country</label>
+                  <select
+                    id="country"
+                    name="address.country"
+                    value={formData.address.country}
+                    onChange={handleCountryChangeAndUpdate}
+                    required
+                  >
+                    <option value="">Select</option>
+                    {countryNames.map((country, i) => (
+                      <option key={i} value={countryCodes[i]}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="state">State</label>
+                  <select id="state" name="address.state" value={formData.address.state} onChange={handleStateChangeAndUpdate} required>
+                    <option value="">Select</option>
+                    {states.map((state, i) => (
+                      <option value={state.isoCode} key={i}>
+                        {state.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
                   <label>City</label>
                   <input
                     type="text"
@@ -344,33 +430,16 @@ const Register = () => {
                     placeholder='city'
                   />
                 </div>
-                <div className='registration-detail'>
-                  <label>State</label>
-                  <input
-                    type="text"
-                    name="address.state"
-                    value={formData.address.state}
-                    onChange={handleInputChange}
-                    required
-                    placeholder='state'
-                  />
-                </div>
-                <div className='registration-detail'>
-                  <label>Country</label>
-                  <input
-                    type="text"
-                    name="address.country"
-                    value={formData.address.country}
-                    onChange={handleInputChange}
-                    required
-                    placeholder='country'
-                  />
-                </div>
+
                 <div>
                   <label htmlFor="avilablity">Availability</label>
-                  <select name="available" id="availability" onChange={handleInputChange}>
-                    <option value="available">available</option>
-                    <option value="unavailable">unavailable</option>
+                  <select name="availability" id="availability" 
+                  value={formData.availability} onChange={handleInputChange}>
+                  <option value="">Select Blood Availability</option>
+                  <option value="All">All</option>
+                    {bloodGroup.map((blood,i)=>{
+                      return <option key={i}>{blood}</option>
+                    })}
                   </select>
                 </div>
                 <div className='register-butn'>

@@ -1,20 +1,43 @@
-import {useState} from 'react'
-
+import {useEffect, useState} from 'react'
 import './navbar.css'
 import { useNavigate, Link } from 'react-router-dom'
+import assets from '../../assets/assets.js';
 
-const Navbar = () => {
+const Navbar = ({ user, setUser }) => {
   const navigate=useNavigate();
   const [activeLink, setActiveLink] = useState('/');
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [setUser]);
 
   const handleNavClick = (path) => {
     setActiveLink(path);
     navigate(path);
   };
 
-  const handleLoginBtn=()=>{
-    navigate('/login')
-  }
+  const handleLoginBtn = () => {
+    navigate('/login');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/');
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -54,7 +77,25 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <button className='butn' onClick={handleLoginBtn}>Login/Register</button>
+          {user ? (
+            <div className="navbar-profile">
+              <img src={assets.profile} alt="" />
+              <ul className="nav-profile-dropdown">
+                <li onClick={() => navigate('/my-profile')}>
+                  <img src={assets.profile} alt="" />
+                  <p>My Profile</p>
+                </li>
+                <li onClick={handleLogout}>
+                  <img src={assets.logout_icon} alt="" />
+                  <p>Logout</p>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <button className="butn" onClick={handleLoginBtn}>
+              Login/Register
+            </button>
+          )}
         </div>
       </nav>
     </div>

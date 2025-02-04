@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './login.css'
-import assets from '../../assets/assets'
+import assets from '../../assets/assets.js'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const Login = () => {
+const Login = ({setUser}) => {
+  const navigate = useNavigate();
   const [formData,setFormData]=useState({
     email:"",
     password:""
@@ -18,11 +21,14 @@ const Login = () => {
   const handleSubmit=async(e)=>{
     e.preventDefault();
     try{
-      const res=await axios.post(formData.email,formData.password);
-      if(res.success){
-        localStorage.setItem("token",res.token);
-        alert("Login Successfully!");
-        window.location.href="/";
+      const res=await axios.post('/api/user/login',formData);
+      if(res.data.success){
+        const user = res.data.user;
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', res.data.token);
+        setUser(user);
+        alert('Login Successful!');
+        navigate('/');
       }else{
         alert(res.message || "Login Failesd");
       }
@@ -58,6 +64,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email</label>
             <input type="email" className="form-control" id="exampleInputEmail1" 
+            name='email'
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Enter email"/>
@@ -65,6 +72,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="exampleInputPassword1" 
+            name="password"
             value={formData.password}
             onChange={handleInputChange}
             placeholder="Password"/>

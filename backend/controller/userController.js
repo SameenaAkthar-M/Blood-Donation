@@ -104,7 +104,8 @@ const registerUser=async(req,res)=>{
         email,
         password,
         phone,
-        address
+        address,
+        availability
       }=formData;
 
       const exist=await hospitalModel.findOne({email});
@@ -133,7 +134,8 @@ const registerUser=async(req,res)=>{
         email,
         password:hashedPassword,
         phone,
-        address
+        address,
+        availability:availability
       })
       try {
         const hospital = await newHospital.save();
@@ -183,4 +185,62 @@ const registerUser=async(req,res)=>{
   }
 }
 
-export {loginUser,registerUser}
+const getDonorsAndHospitals = async (req, res) => {
+  const { bloodGroup, city, state, country } = req.query;
+
+  const decodedBloodGroup = decodeURIComponent(bloodGroup);
+
+  try {
+    const query = {
+      ...(decodedBloodGroup && { bloodGroup: decodedBloodGroup }),
+      ...(city && { "address.city": city }),
+      ...(state && { "address.state": state }),
+      ...(country && { "address.country": country }),
+    };
+    console.log("Query being used:", query);
+
+    const donors = await userModel.find(query);
+    const hospitals = await hospitalModel.find({
+      $and: [
+        { "address.state": state },
+        { "address.country": country },
+        { "address.city": city },
+        {
+          $or: [
+            { availability: { $regex: "All", $options: "i"} },  // Case-insensitive match
+            { bloodGroup: decodedBloodGroup }
+          ]
+        }
+      ]
+    }, { password: 0 });
+
+    console.log("Hospital Query:", JSON.stringify({
+      $and: [
+        { "address.state": state },
+        { "address.country": country },
+        { "address.city": city },
+        {
+          $or: [
+            { availability: { $regex: /^all$/i } },
+            { bloodGroup: decodedBloodGroup }
+          ]
+        }
+      ]
+    }, null, 2));
+
+    if (!donors.length && !hospitals.length) {
+      return res.status(200).json({
+        success: true,
+        message: "No results found for the selected filters.",
+        donors: [],
+        hospitals: []
+      });
+    }
+
+    res.json({ success: true, donors, hospitals });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+export {loginUser,registerUser, getDonorsAndHospitals }
