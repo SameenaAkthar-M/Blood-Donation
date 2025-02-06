@@ -1,9 +1,19 @@
 .fandq-container{
   min-height: calc(100vh - 60px);
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .title-fandq{
   font-size: 18px;
   padding: 10px ;
+}
+
+@media (max-width:480px){
+  .title-fandq{
+    padding: 10px;
+  }
+  .title-fandq p{
+    margin-bottom: 0;
+  }
 }

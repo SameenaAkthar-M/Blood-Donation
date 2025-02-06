@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import profile from '../../assets/profile_image.png'
 import './navbar.css'
 import { useNavigate, Link } from 'react-router-dom'
@@ -7,6 +7,7 @@ const Navbar = () => {
 
   const navigate=useNavigate();
   const [activeLink, setActiveLink] = useState('/admin-donors');
+  const [dropdownOpen,setDropdownOpen]=useState(false);
 
   const handleNavLink = (path) => {
     setActiveLink(path);
@@ -33,7 +34,10 @@ const Navbar = () => {
       >Hospitals</Link>
       </div>
       <div className="profile-image">
-        <img src={profile} alt="" />
+        <img 
+          src={profile}
+          className='profile-photo'
+          alt="" />
       </div>
     </div>
   )

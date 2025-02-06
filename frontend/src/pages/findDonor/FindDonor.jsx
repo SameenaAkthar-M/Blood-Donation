@@ -79,11 +79,11 @@ const FindDonor = () => {
   };
 
   return (
-    <div>
+    <div className='outer-container'>
       <div className="container">
-        <div className="finddonor-form">
+        <div className="find-donor-container">
         <div className="form-title">
-            <p>Find Blood Donor</p>
+            <h3>Find Blood Donor</h3>
             </div>
           <div className="form-detail">
             <div className="detail">
@@ -101,7 +101,7 @@ const FindDonor = () => {
               <select id="country" onChange={handleCountryChangeAndUpdate}>
                 <option value="Select">Select</option>
                 {countryNames.map((country,i)=>{
-                  return <option key={i} value={countryCodes[i]}>{country}</option>
+                  return <option key={i} value={countryCodes[i]} className='dropdown'>{country}</option>
                 })}
               </select>
             </div>

@@ -24,19 +24,19 @@ const donorSchema=mongoose.Schema({
     type:String,
     required:true
   },
-  donations:[
-    {
-      date:{
-        type:String,
-        required:true
-      }
-    }
-  ],
+  donations:{
+    type:Number,
+    required:true
+  },
   phone:{
     type:Number,
     required:true,
     unique:true
   },
+  // userType: {
+  //   type: String,
+  //   default: 'donor',
+  // },
   address:
     {
       city:{

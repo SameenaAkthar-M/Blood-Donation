@@ -35,3 +35,16 @@ span {
 .nav-link.active {
   color: rgb(226, 163, 35) !important;
 }
+
+.profile-image {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}

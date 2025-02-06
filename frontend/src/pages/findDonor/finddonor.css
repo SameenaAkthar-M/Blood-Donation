@@ -1,60 +1,110 @@
-.finddonor-form{
-  height: 91vh;
-  width: 100%;
+.outer-container{
+  height: 62.8vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
+}
+.find-donor-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #8C1C13;
+  color: white;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.form-detail select, .form-detail label {
-  flex-shrink: 0;
+.form-title h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
-.form-detail{
-  width: 30%;
+.form-detail {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  align-items: center;
-  padding: 30px 25px;
-  gap: 10px;
-  border: 1px solid black;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  margin-bottom: 10px;
-}
-
-.form-title{
-  width: 30%;
-  font-size: 20px;
   color: white;
-  background-color: rgb(132, 10, 10);
-  text-align: center;
-  padding: 8px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
 }
 
-.form-title p{
-  margin-bottom: 0;
-}
-
-.form-detail label{
-  margin-right: 10px;
-}
-
-.form-detail select{
-  padding: 8px;
-  width: 180px;
-  border-radius: 10px;
-  scroll-behavior: smooth;
-}
-
-.form-detail .detail{
+.detail {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.detail label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.detail input,
+.detail select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.detail input:focus,
+.detail select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .find-donor-container {
+    max-width: 90%; /* Shrink the container width */
+    margin: 20px auto; /* Reduce margin to fit smaller screens */
+    padding: 15px; /* Adjust padding */
+    border-radius: 15px; /* Slightly reduce border radius */
+  }
+
+  .form-title h3 {
+    font-size: 18px; /* Reduce title size */
+    margin-bottom: 15px;
+  }
+
+  .form-detail {
+    gap: 10px; /* Add some spacing between input fields */
+  }
+
+  .detail {
+    margin-bottom: 10px; /* Reduce spacing between fields */
+  }
+
+  .detail label {
+    font-size: 14px; /* Reduce label font size */
+  }
+
+  .detail input,
+  .detail select {
+    padding: 8px; /* Reduce padding for inputs and selects */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  button {
+    padding: 10px 15px; /* Adjust button size */
+    font-size: 14px; /* Reduce font size for buttons */
+  }
 }

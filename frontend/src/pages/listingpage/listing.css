@@ -1,5 +1,6 @@
 .listing-container {
   width: 80%;
+  height: 64vh;
   margin: auto;
   text-align: center;
 }
@@ -11,12 +12,14 @@
 }
 
 .data-table th, .data-table td {
-  border: 1px solid #ddd;
+  border: 1px solid rgb(189, 186, 186);
   padding: 10px;
+  font-size: 14px;
 }
 
 .data-table th {
-  background-color: #f4f4f4;
+  background-color: #8C1C13;
+  color: white;
   font-weight: bold;
 }
 
@@ -26,4 +29,28 @@
 
 .data-table tr:hover {
   background-color: #f1f1f1;
+}
+
+@media (max-width:480px){
+  .listing-container{
+    width: 90%;
+    padding: 10px;
+  }
+  .data-table{
+    margin: 10px 0;
+  }
+  .data-table th,
+  .data-table td{
+    font-size: 12px;
+    padding: 8px;
+  }
+  .data-table th{
+    font-size: 14px;
+  }
+  .data-table td{
+    word-wrap: break-word;
+  }
+  .data-table tr{
+    font-size: 12px;
+  }
 }

@@ -1,0 +1,61 @@
+.add-donor-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.donor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.donor-form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.donor-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.donor-form input,
+.donor-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.donor-form input:focus,
+.donor-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.register-butn {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(132, 10, 10);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}

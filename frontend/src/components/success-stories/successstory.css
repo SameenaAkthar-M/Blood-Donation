@@ -23,3 +23,10 @@
   background-position: center;
   background-size: cover;
 }
+
+@media (max-width:480px){
+  .cards{
+    grid-template-columns: repeat(1,2fr);
+    font-size: 14px;
+  }
+}

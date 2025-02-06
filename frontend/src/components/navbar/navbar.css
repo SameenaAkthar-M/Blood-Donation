@@ -1,5 +1,5 @@
 nav {
-  background-color: rgb(132, 10, 10);
+  background-color: #8C1C13;
 }
 
 .logo {
@@ -21,9 +21,55 @@ span {
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-  color: rgb(226, 163, 35);
+  color: #E09F3E;
 }
 
 .navbar .nav-link.active {
-  color: rgb(226, 163, 35) !important;
+  color: #E09F3E !important;
+}
+
+.navbar-profile {
+  position: relative;
+}
+
+.nav-profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: rgb(132, 10, 10);
+  border: 1px solid white;
+  width: 150px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-profile-dropdown p{
+  margin: 0;
+  padding: 0;
+}
+
+.nav-profile-dropdown hr{
+  padding: 0;
+  margin: 0;
+}
+
+.nav-profile-dropdown li {
+  padding: 10px 8px;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-profile-dropdown li:hover {
+  background-color: #E09F3E;
+  border-radius: 10px;
+}
+
+.nav-profile-dropdown.show {
+  display: block;
 }

@@ -1,23 +1,30 @@
 .outer-page {
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  min-height: 91vh;
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
+  background-color: #8C1C13;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 20px;
 }
 
 .register-title{
   width: 100%;
-  background-color: rgb(132, 10, 10);
   text-align: center;
   color: white;
   padding: 8px;
   font-size: 20px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+}
+
+.register-title hr{
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .register-title p{
@@ -29,17 +36,14 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  border: 1px solid black;
   border-radius: 20px;
-  min-height: 700px;
-  min-width: 500px;
   gap: 5px;
   animation: fadeIn 0.1s ease-in-out;
 }
 
 .register-form {
   width: 100%;
-  max-width: 500px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,6 +90,11 @@
 
 .register-form div{
   display: flex;
+  flex-direction: column;
+}
+
+.register-form div{
+  display: flex;
   justify-content: space-between;
   gap: 10px;
 }
@@ -94,6 +103,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+select{
+  border-radius: 8px;
 }
 
 .register-butn{

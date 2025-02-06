@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { registerUser } from "../../utils/api.js";
 import './register.css'
 import useLocationData from '../../hooks/useLocationData';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [userType,setUserType]=useState('donor');
   const [isFormVisible, setIsFormVisible] = useState(true);
+  const navigate=useNavigate();
 
   const {
     countryNames,
@@ -120,6 +122,7 @@ const Register = () => {
         address: { city: '', state: '', country: '' },
         availability: 'available',
       });
+      navigate('/');
     } catch (error) {
       alert("Registration failed. Please try again.");
     }
@@ -158,7 +161,8 @@ const Register = () => {
       <div className="container outer-page">
         <div className={`register-page ${isFormVisible ? 'show' : ''}`}>
           <div className="register-title">
-            <p>Registration Form</p>
+            <h3>Registration Form</h3>
+            <hr />
           </div>
           {/* User Type Selection Toggle */}
           <div className="user-type">

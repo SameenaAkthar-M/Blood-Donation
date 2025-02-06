@@ -5,7 +5,6 @@
 }
 
 h2 {
-  margin-bottom: 20px;
   color: #d9534f;
 }
 
@@ -42,4 +41,72 @@ h2 {
 
 .delete-btn {
   background-color: #d9534f;
+}
+
+.update-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.update-form h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.update-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.update-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.update-form button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+.update-form button:first-of-type:hover {
+  background-color: #218838;
+}
+
+.update-form button:last-of-type {
+  background-color: rgb(132, 10, 10);
+  color: white;
+}
+
+.update-form button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+.top{
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.top button{
+  padding: 0px 20px;
+  background-color: rgb(132, 10, 10);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
 }

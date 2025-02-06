@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './login.css'
 import assets from '../../assets/assets.js'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +7,7 @@ import axios from 'axios'
 const Login = ({setUser}) => {
   const navigate = useNavigate();
   const [formData,setFormData]=useState({
+    userType:'',
     email:"",
     password:""
   });
@@ -20,20 +21,30 @@ const Login = ({setUser}) => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
+    console.log(formData)
     try{
       const res=await axios.post('/api/user/login',formData);
+      console.log(res.data)
+
       if(res.data.success){
         const user = res.data.user;
+        if (formData.userType === 'admin') {
+          window.open('http://localhost:5174');
+          navigate('/');
+          return
+        }
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('token', res.data.token);
         setUser(user);
         alert('Login Successful!');
         navigate('/');
+        window.location.reload();
       }else{
-        alert(res.message || "Login Failesd");
+        alert(res.message || "Login Failed");
       }
     } catch(error){
       alert("Login failed. Check credentials");
+      console.error(error);
     }
   }
 
@@ -46,17 +57,18 @@ const Login = ({setUser}) => {
       <div className='login-page'>
       <p className='login-title'>Login</p>
         <div className="user-type">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
-            <label class="form-check-label" htmlFor="inlineRadio1">Donor</label>
+          <div className="form-check form-check-inline">
+           <input className="form-check-input" type="radio" name="userType" id="inlineRadio1" value="donor" onChange={handleInputChange}
+           defaultChecked/>
+           <label className="form-check-label" htmlFor="inlineRadio1">Donor</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
-            <label class="form-check-label" htmlFor="inlineRadio2">Admin</label>
+          <div className="form-check form-check-inline">
+           <input className="form-check-input" type="radio" name="userType" id="inlineRadio2" value="admin" onChange={handleInputChange}/>
+           <label className="form-check-label" htmlFor="inlineRadio2">Admin</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"/>
-            <label class="form-check-label" htmlFor="inlineRadio3">Hospital</label>
+          <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" name="userType" id="inlineRadio3" value="hospital" onChange={handleInputChange}/>
+          <label className="form-check-label" htmlFor="inlineRadio3">Hospital</label>
           </div>
         </div>
 
@@ -81,7 +93,7 @@ const Login = ({setUser}) => {
             <p className='link-to-register'>Don't have an account? <a href="/register">Register</a></p>
           </div>
           <div className="btn-styling">
-          <button type="submit" class="btn btn-danger">Submit</button>
+          <button type="submit" className="butn ">Submit</button>
           </div>
         </form>
       </div>
@@ -90,4 +102,4 @@ const Login = ({setUser}) => {
   )
 }
 
-export default Login
+export default Login;

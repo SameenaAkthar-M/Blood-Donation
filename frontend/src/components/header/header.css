@@ -13,35 +13,43 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(132, 10, 10);
+  background-color: #8C1C13;
   border-radius: 30px;
+}
+
+.textual-content{
+  background-color: #8C1C13;
 }
 
 .textual-content .title{
   font-size: 30px;
   font-weight: 600;
+  background-color: #8C1C13;
 }
 
 .textual-content .sub-title{
   font-size: 20px;
+  background-color: #8C1C13;
 }
 
 .main-image{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #8C1C13;
 }
 
 .main-image img{
   height: 400px;
   border-radius: 50%;
-  animation: float 2.5s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
 }
 .buttons{
   padding: 10px;
   padding-left: 0;
   display: flex;
   gap: 30px;
+  background-color: #8C1C13;
 }
 
 .butn{
@@ -58,5 +66,35 @@
   }
   50%{
     transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    height: 250px;
+  }
+  .main-image img{
+    height: 100px;
+    border-radius: 50%;
+    animation: float 2s ease-in-out infinite;
+  }
+  .main-content{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 0px 12px;
+  }
+  .textual-content .title{
+    font-size: max(1vw,16px);
+  }
+  .textual-content .sub-title{
+    font-size: max(0.5vw,14px);
+  }
+  .buttons .b-1,.b-2{
+    font-size: max(0.5vw,12px);
+    padding: 10px;
   }
 }

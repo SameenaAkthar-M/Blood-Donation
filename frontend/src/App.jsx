@@ -8,42 +8,25 @@ import FandQ from './pages/f&q/FandQ.jsx'
 import Footer from './components/footer/Footer.jsx'
 import { useState,useEffect } from 'react'
 import Listing from './pages/listingpage/Listing.jsx'
+import Profile from './pages/profile/Profile.jsx'
+import Contactus from './components/contactus/Contactus.jsx'
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  console.log("App User State:", user);
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    console.log('Stored User:', storedUser);  // Debugging
-
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser);
-        console.log('Parsed User:', parsedUser);  // Debugging
-      } catch (error) {
-        console.error('Error reading user data from localStorage', error);
-        setUser(null);
-      }
-    } else {
-      console.log('No user found in localStorage');  // Debugging
-      setUser(null);
-    }
-  }, []);
+  const [user,setUser]=useState(null);
 
   return (
     <>
-      <div>
-        <Navbar user={user} setUser={setUser}/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login setUser={setUser} />}/>
-          <Route path='/find-donor' element={<FindDonor/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/f&q' element={<FandQ/>}/>
-          <Route path="/listings" element={<Listing />} />
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<Login setUser={setUser}/>}/> 
+        <Route path='/find-donor' element={<FindDonor/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/f&q' element={<FandQ/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path="/listings" element={<Listing />} />
+        <Route path="/contact-us" element={<Contactus />} />
+      </Routes>
       <Footer/>
     </>
   )
