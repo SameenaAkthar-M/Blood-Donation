@@ -85,54 +85,62 @@ const Hospitals = ({url}) => {
   }
 
   return (
-    <div className="hospitals-list">
+    <div className="hospitals-list container">
       <div className="top">
-      <h2>Hospital List</h2>
+        <h2>Hospital List</h2>
         <button onClick={() => navigate('/add-hospital')}>Add</button>
       </div>
-      <div className='hospitals-header'>
-        <b>S.No</b>
-        <b>Hospital Name</b>
-        <b>Blood Type</b>
-        <b>Phone</b>
-        <b>State</b>
-        <b>City</b>
-        <b>Update</b>
-        <b>Delete</b>
+
+      {/* Table Structure */}
+      <div className="table-container">
+        <table className="hospitals-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Hospital Name</th>
+              <th>Availability</th>
+              <th>Phone</th>
+              <th>State</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((item, i) => (
+              <tr key={i}>
+                <td className='sno'>{i + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.availability}</td>
+                <td>{item.phone}</td>
+                <td>{item.address.state}</td>
+                <td>{item.address.city}</td>
+                <td>
+                  <div className="buttons">
+                    <button className="update-btn" onClick={() => handleUpdateClick(item)}>Update</button>
+                    <button className="delete-btn" onClick={() => deleteHospital(item._id)}>Delete</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* Update Form */}
+        {selectedHospital && (
+          <div className="update-form">
+            <h3>Update Hospital</h3>
+            <input type="text" value={updatedData.name} onChange={(e) => setUpdatedData({ ...updatedData, name: e.target.value })} placeholder="Name" />
+            <input type="text" value={updatedData.phone} onChange={(e) => setUpdatedData({ ...updatedData, phone: e.target.value })} placeholder="Phone" />
+            <input type="text" value={updatedData.state} onChange={(e) => setUpdatedData({ ...updatedData, state: e.target.value })} placeholder="State" />
+            <input type="text" value={updatedData.city} onChange={(e) => setUpdatedData({ ...updatedData, city: e.target.value })} placeholder="City" />
+            <input type="text" value={updatedData.availability} onChange={(e) => setUpdatedData({ ...updatedData, availability: e.target.value })} placeholder="Availability" />
+            <button onClick={updateHospital}>Save Changes</button>
+            <button onClick={() => setSelectedHospital(null)}>Cancel</button>
+          </div>
+        )}
       </div>
-
-      {list.length > 0 ? (
-  list.map((item, i) => (
-    <div className="hospitals-row" key={item._id || i}>
-      <p>{i + 1}</p>
-      <p>{item.name || "N/A"}</p>
-      <p>{item.availability || "N/A"}</p>
-      <p>{item.phone || "N/A"}</p>
-      <p>{item.address?.state || "N/A"}</p>
-      <p>{item.address?.city || "N/A"}</p>
-      <a href="#" className="update-btn" onClick={() => handleUpdateClick(item)}>Update</a>
-      <a href="#" onClick={()=>deleteHospital(item._id)} className="delete-btn">Delete</a>
     </div>
-  ))
-) : (
-  <p>No data found.</p>
-)}
-
-
-{selectedHospital && (
-        <div className="update-form">
-          <h3>Update Hospital</h3>
-          <input type="text" value={updatedData.name} onChange={(e) => setUpdatedData({...updatedData, name: e.target.value})} placeholder="Name" />
-          <input type="text" value={updatedData.phone} onChange={(e) => setUpdatedData({...updatedData, phone: e.target.value})} placeholder="Phone" />
-          <input type="text" value={updatedData.state} onChange={(e) => setUpdatedData({...updatedData, state: e.target.value})} placeholder="State" />
-          <input type="text" value={updatedData.city} onChange={(e) => setUpdatedData({...updatedData, city: e.target.value})} placeholder="City" />
-          <input type="text" value={updatedData.availability} onChange={(e) => setUpdatedData({...updatedData, availability: e.target.value})} placeholder="Availability" />
-          <button onClick={updateHospital}>Save Changes</button>
-          <button onClick={() => setSelectedHospital(null)}>Cancel</button>
-        </div>
-      )}
-    </div>
-  )
+  );
 }
 
 export default Hospitals

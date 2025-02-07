@@ -40,7 +40,7 @@ const Profile = () => {
         setUser(parsedUser);
         setFormData({
           name: parsedUser.name || '',
-        dob: parsedUser.dob || '', // Ensure dob is never undefined
+        dob: parsedUser.dob || '',
         bloodGroup: parsedUser.bloodGroup || '',
         email: parsedUser.email || '',
         phone: parsedUser.phone || '',
@@ -190,6 +190,19 @@ const Profile = () => {
                     })}
                 </select>
               </div>
+              <div>
+              <p><strong>Availability</strong></p>
+              <select
+              id="availability"
+              name="availability"
+              value={formData.availability}
+              onChange={handleChange}
+              disabled={!editMode}
+            >
+              <option value='available'>available</option>
+              <option value="unavailable">unavailable</option>
+            </select>
+              </div>
             </>
           )}
           <div>
@@ -292,11 +305,11 @@ const Profile = () => {
             </select>
           </div>
           <div className="edit-buttons">
-            <button type="button" onClick={handleEditToggle} className="btn btn-secondary">
+            <button type="button" onClick={handleEditToggle} className="butn">
               {editMode ? 'Cancel' : 'Edit Profile'}
             </button>
             {editMode && (
-              <button type="submit" className="btn btn-primary">Save Changes</button>
+              <button type="submit" className="btn btn-success">Save Changes</button>
             )}
           </div>
         </form>

@@ -18,6 +18,10 @@ const Navbar = () => {
     navigate("/");
   };
 
+  useEffect(() => {
+    setActiveLink(location.pathname); // Update active link when route changes
+  }, [location.pathname]);
+
   const toggleProfileDropdown = () => {
     setShowDropdown((prev) => !prev);
   };
@@ -38,7 +42,6 @@ const Navbar = () => {
   }, []);
 
   const handleNavClick = (path) => {
-      setActiveLink(path);
       navigate(path);
   };
 

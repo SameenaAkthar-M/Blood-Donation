@@ -32,6 +32,14 @@ span {
   position: relative;
 }
 
+.navbar-toggler-icon{
+  filter: invert(1);
+}
+
+.navbar-toggler{
+  border: none !important;
+}
+
 .nav-profile-dropdown {
   position: absolute;
   top: 100%;
@@ -47,6 +55,12 @@ span {
   padding: 0;
   margin: 0;
   text-align: center;
+}
+
+.profile-image{
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
 }
 
 .nav-profile-dropdown p{

@@ -24,7 +24,8 @@ span {
 .nav-link{
   text-decoration: none;
   color: white;
-  padding-right: 10px;
+  padding-right: 20px;
+  font-size: 18px;
 }
 
 .navbar .nav-link:hover,
@@ -36,15 +37,57 @@ span {
   color: rgb(226, 163, 35) !important;
 }
 
-.profile-image {
-  position: relative;
+.navbar-profile {
+  position: relative; /* Ensures the dropdown is positioned relative to this container */
   display: inline-block;
+}
+
+.nav-profile-dropdown {
+  position: absolute;
+  top: 100%; /* Positions it right below the profile image */
+  right: 0;
+  background-color: rgb(132, 10, 10);
+  border: 1px solid white;
+  width: 150px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  margin: 5px 0; /* Small margin for spacing */
+  text-align: center;
+}
+
+.profile-image {
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
   cursor: pointer;
 }
 
-.profile-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.nav-profile-dropdown p {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-profile-dropdown hr {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-profile-dropdown li {
+  padding: 10px 8px;
+  margin-bottom: 0;
+  list-style: none;
   cursor: pointer;
+}
+
+.nav-profile-dropdown li:hover {
+  background-color: #E09F3E;
+  border-radius: 10px;
+}
+
+.nav-profile-dropdown.show {
+  display: block;
 }

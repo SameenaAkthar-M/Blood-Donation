@@ -7,12 +7,24 @@ const Navbar = () => {
 
   const navigate=useNavigate();
   const [activeLink, setActiveLink] = useState('/admin-donors');
-  const [dropdownOpen,setDropdownOpen]=useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleNavLink = (path) => {
     setActiveLink(path);
     navigate(path);
   };
+
+  const toggleProfileDropdown = () => {
+    setShowDropdown((prev) => !prev);
+  };
+
+  const handleOnClick = () => {
+    setShowDropdown(false);
+  };
+
+  const logout=()=>{
+    window.open('http://localhost:5173');
+  }
 
   return (
     <div className="nav-bar">
@@ -23,6 +35,7 @@ const Navbar = () => {
         className={`nav-link ${activeLink==='/admin-donors' ? 'active':''}`}
         onClick={()=>{
           handleNavLink('/admin-donors')
+          setShowDropdown(false);
         }}
       >Donors</Link>
       <Link
@@ -33,11 +46,22 @@ const Navbar = () => {
         }}
       >Hospitals</Link>
       </div>
-      <div className="profile-image">
-        <img 
+      <div className="navbar-profile">
+        <img
           src={profile}
-          className='profile-photo'
-          alt="" />
+          className="profile-image"
+          alt=""
+          onClick={toggleProfileDropdown}
+        />
+        {showDropdown && (
+          <ul
+            className={`nav-profile-dropdown ${showDropdown ? "show" : ""}`}
+          >
+            <li onClick={logout}>
+              <p>Logout</p>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   )

@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* height: 100vh; */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -11,9 +10,9 @@
 .user-detail {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the start */
-  max-width: 600px; /* Set a maximum width */
-  width: 100%; /* Ensure it takes full width but no more than max-width */
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
   margin-top: 20px;
 }
 
@@ -31,7 +30,7 @@ strong {
   font-weight: bold;
 }
 
-input {
+input, select {
   width: 100%;
   padding: 8px;
   font-size: 16px;
@@ -49,6 +48,7 @@ input:disabled {
   justify-content: flex-start;
   margin-top: 20px;
   width: 100%;
+  gap: 20px;
 }
 
 button {

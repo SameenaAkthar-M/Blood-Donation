@@ -93,7 +93,7 @@ const Login = ({setUser}) => {
             <p className='link-to-register'>Don't have an account? <a href="/register">Register</a></p>
           </div>
           <div className="btn-styling">
-          <button type="submit" className="butn ">Submit</button>
+            <button type="submit" className="butn ">Submit</button>
           </div>
         </form>
       </div>

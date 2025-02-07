@@ -158,13 +158,17 @@ const Register = () => {
   };
 
   return (
-      <div className="container outer-page">
+      <div className="container">
+        <div className="outer-page">
         <div className={`register-page ${isFormVisible ? 'show' : ''}`}>
-          <div className="register-title">
-            <h3>Registration Form</h3>
-            <hr />
-          </div>
+          {isFormVisible && (
+            <div className={`register-title ${isFormVisible ? 'show' : 'hidden'}`}>
+              <h3>Registration Form</h3>
+              <hr />
+            </div>
+              )}
           {/* User Type Selection Toggle */}
+          
           <div className="user-type">
             <div className="form-check form-check-inline">
               <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="donor"
@@ -452,6 +456,7 @@ const Register = () => {
               </form>
             </div>
           )}
+        </div>
         </div>
       </div>
   )

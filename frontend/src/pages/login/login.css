@@ -14,7 +14,6 @@
   align-items: center;
   gap: 0;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #E7D7C1;
   color: white;
 }
@@ -41,7 +40,7 @@
   height: 70%;
   width: 40%;
   padding: 20px;
-  background-color: rgb(132, 10, 10);
+  background-color: #8C1C13;
   border: 1px solid rgb(131, 125, 125);
   backdrop-filter: blur(10px);
   border-top-right-radius: 20px;
@@ -102,5 +101,24 @@ form label, input{
     flex-direction: column;
     justify-content: center;
   }
-  
+}
+
+@media (min-width: 481px) and (max-width: 980px){
+  .login-page {
+    height: 60%;
+    width: 70%;
+  }
+  .side-image{
+    height: 60%;
+  }
+}
+
+@media (min-width: 981px) and (max-width:1366px){
+  .login-page {
+    height: 50%;
+    width: 50%;
+  }
+  .side-image{
+    height: 50%;
+  }
 }

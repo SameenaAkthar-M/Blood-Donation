@@ -19,7 +19,9 @@
   text-align: center;
   color: white;
   padding: 8px;
+  padding-top: 10px;
   font-size: 20px;
+  /* animation: fadeIn 0.2s ease-in-out; */
 }
 
 .register-title hr{
@@ -38,11 +40,12 @@
   margin: auto;
   border-radius: 20px;
   gap: 5px;
-  animation: fadeIn 0.1s ease-in-out;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
+
 .register-form {
-  width: 100%;
+  width: 90%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
@@ -62,6 +65,7 @@
 
 .register-form.show {
   opacity: 1;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 .register-form.hidden {
@@ -126,4 +130,22 @@ select{
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
+}
+
+@media (max-width:480px){
+  .outer-page {
+    max-width: 350px;
+  }
+}
+
+@media (min-width:481px) and (max-width:980px){
+  .outer-page{
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 981px) and (max-width:1366px){
+  .outer-page{
+    font-size: 18px;
+  }
 }

@@ -315,14 +315,13 @@ const updateProfile = async (req, res) => {
         userId,
         {
           name,
-          dob,
           bloodGroup,
           email,
           phone,
           donations,
           address: { country, state, city },
-          hospitalName, // Hospital-specific field
-          hospitalLicenseNumber, // Hospital-specific field
+          hospitalName, 
+          hospitalLicenseNumber,
         },
         { new: true }
       );

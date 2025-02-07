@@ -80,7 +80,7 @@ const FindDonor = () => {
 
   return (
     <div className='outer-container'>
-      <div className="container">
+      <div className="container main-cont">
         <div className="find-donor-container">
         <div className="form-title">
             <h3>Find Blood Donor</h3>

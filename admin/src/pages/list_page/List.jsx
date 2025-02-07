@@ -90,54 +90,95 @@ const List = ({url}) => {
   };  
 
   return (
-    <div className="donors-list">
+    <div className="donors-list container">
       <div className="top">
         <h2>Donors List</h2>
         <button onClick={() => navigate('/add-donor')}>Add</button>
       </div>
-      <div className='donors-header'>
-        <b>S.No</b>
-        <b>Name</b>
-        <b>Blood Type</b>
-        <b>Phone</b>
-        <b>State</b>
-        <b>City</b>
-        <b>Availability</b>
-        <b>Update</b>
-        <b>Delete</b>
-      </div>
 
-      {list.map((item,i)=>{
-        return (
-          <div className="donor-row" key={i}>
-            <p>{i+1}</p>
-            <p>{item.name}</p>
-            <p>{item.bloodGroup}</p>
-            <p>{item.phone}</p>
-            <p>{item.address.state}</p>
-            <p>{item.address.city}</p>
-            <p>{item.availability}</p>
-            <a href="#" className="update-btn" onClick={()=>handleUpdateClick(item)}>Update</a>
-            <a href="#" onClick={()=>deleteDonor(item._id)} className="delete-btn">Delete</a>
-          </div>
-        )
-      })}
+      {/* Table Structure */}
+      <div className="table-container">
+      <table className="donors-table ">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Blood Type</th>
+            <th>Phone</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Availability</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((item, i) => (
+            <tr key={i}>
+              <td className='sno'>{i + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.bloodGroup}</td>
+              <td>{item.phone}</td>
+              <td>{item.address.state}</td>
+              <td>{item.address.city}</td>
+              <td>{item.availability}</td>
+              <td>
+                <div className="buttons">
+                <button className="update-btn" onClick={() => handleUpdateClick(item)}>Update</button>
+                <button className="delete-btn" onClick={() => deleteDonor(item._id)}>Delete</button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
+      {/* Update Form */}
       {selectedDonor && (
         <div className="update-form">
           <h3>Update Donor</h3>
-          <input type="text" value={updatedData.name} onChange={(e) => setUpdatedData({...updatedData, name: e.target.value})} placeholder="Name" />
-          <input type="text" value={updatedData.bloodGroup} onChange={(e) => setUpdatedData({...updatedData, bloodGroup: e.target.value})} placeholder="Blood Group" />
-          <input type="text" value={updatedData.phone} onChange={(e) => setUpdatedData({...updatedData, phone: e.target.value})} placeholder="Phone" />
-          <input type="text" value={updatedData.state} onChange={(e) => setUpdatedData({...updatedData, state: e.target.value})} placeholder="State" />
-          <input type="text" value={updatedData.city} onChange={(e) => setUpdatedData({...updatedData, city: e.target.value})} placeholder="City" />
-          <input type="text" value={updatedData.availability} onChange={(e) => setUpdatedData({...updatedData, availability: e.target.value})} placeholder="Availability" />
+          <input
+            type="text"
+            value={updatedData.name}
+            onChange={(e) => setUpdatedData({ ...updatedData, name: e.target.value })}
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            value={updatedData.bloodGroup}
+            onChange={(e) => setUpdatedData({ ...updatedData, bloodGroup: e.target.value })}
+            placeholder="Blood Group"
+          />
+          <input
+            type="text"
+            value={updatedData.phone}
+            onChange={(e) => setUpdatedData({ ...updatedData, phone: e.target.value })}
+            placeholder="Phone"
+          />
+          <input
+            type="text"
+            value={updatedData.state}
+            onChange={(e) => setUpdatedData({ ...updatedData, state: e.target.value })}
+            placeholder="State"
+          />
+          <input
+            type="text"
+            value={updatedData.city}
+            onChange={(e) => setUpdatedData({ ...updatedData, city: e.target.value })}
+            placeholder="City"
+          />
+          <input
+            type="text"
+            value={updatedData.availability}
+            onChange={(e) => setUpdatedData({ ...updatedData, availability: e.target.value })}
+            placeholder="Availability"
+          />
           <button onClick={updateDonor}>Save Changes</button>
           <button onClick={() => setSelectedDonor(null)}>Cancel</button>
         </div>
       )}
+      </div>
     </div>
-  )
+  );
 }
 
 export default List
