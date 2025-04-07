@@ -25,8 +25,7 @@ const donorSchema=mongoose.Schema({
     required:true
   },
   donations:{
-    type:Number,
-    required:true
+    type:Number
   },
   phone:{
     type:Number,
