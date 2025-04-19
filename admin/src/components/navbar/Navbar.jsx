@@ -57,7 +57,7 @@ const Navbar = () => {
           <ul
             className={`nav-profile-dropdown ${showDropdown ? "show" : ""}`}
           >
-            <li onClick={logout}>
+            <li onClick={handleOnClick}>
               <p>Logout</p>
             </li>
           </ul>

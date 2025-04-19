@@ -27,17 +27,6 @@ export const registerUser = async (formData) => {
   }
 };
 
-export const loginUser=async(email,password)=>{
-  try{
-    const res=await axios.post('/api/user/login',{email,password});
-    console.log(res.data);
-    return res.data;
-  } catch(error){
-    console.log(error.response?.data || error.message)
-    throw error;
-  }
-}
-
 export const fetchDonors = async (filters) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/api/user/donors`, { 
